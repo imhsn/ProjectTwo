@@ -1,0 +1,14 @@
+<apex:page standardController="SignUp__c" extensions="SignUpPaginationExtension">
+    <apex:form>
+        <apex:pageBlock title="New Sign Up Wizard">
+            <apex:outputText value="Pick an Event" />
+            <apex:inputField value="{!SignUp__c.Event__c}" />
+            <br />
+            <apex:outputText value="Pick an Employee" />
+            <apex:inputField value="{!SignUp__c.Employee__c}" />
+            <br />
+        </apex:pageBlock>
+        <apex:commandButton action="{!save}" value="Save"/>
+        <apex:commandButton action="{!Cancel}" value="Cancel" />
+    </apex:form>
+</apex:page>
