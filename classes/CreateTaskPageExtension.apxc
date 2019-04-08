@@ -1,0 +1,29 @@
+public class CreateTaskPageExtension {
+    
+    //Variable to be used for saving
+    Task tsk = new Task();
+    
+    public ApexPages.StandardSetController setController {get;set;}
+    
+    public List<Task> displayedTasks {
+        get {
+            return setController.getRecords();
+            } set;
+    }
+    
+   //Pagination Setup
+    public CreateTaskPageExtension(ApexPages.StandardSetController ctrl) {
+        setController = new ApexPages.StandardSetController([SELECT Id, OwnerId, Status, Subject, WhoId, ActivityDate, WhatId, Priority, Description 
+                                                          FROM Task]);
+        setController.setPageSize(5);
+    }
+   
+    public CreateTaskPageExtension(ApexPages.StandardController con) {
+        tsk = (Task)con.getRecord();
+    }
+    
+    // Method for redirecting users to the Task Main Page
+    public PageReference Cancel() {
+        return Page.TaskMainPage;
+    }
+}
