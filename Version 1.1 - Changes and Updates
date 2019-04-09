@@ -20,4 +20,22 @@ CreateTaskPageExtension.apxc
   Update added at line 36 to 40: Added createTaskPage method, sends user to createTaskPage.
   Reason: This method was called in the TaskMainPage.vfp file but was not declared.
   
+  
+CreateEmployeePage.vfp
+
+  Update added at line 8: Added an extension, "EmployeePaginationExtension"
+  Reason: Needed to override the cancel method to redirect the user to a visualforce page.
+  
+  
+EmployeeMainPage.vfp
+
+  Update added: New file
+  Reason: Needed an employee main page
+  
+  
+EmployeePaginationExtension.apxc
+
+  Update added: New file
+  Reason: Needed an extension for EmployeeMainPage.vfp and CreateEmployeePage.vfp
+  
 
