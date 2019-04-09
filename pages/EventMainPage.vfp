@@ -1,0 +1,38 @@
+<!-- EventMainPage -->
+<!-- Shows a list of all event records --> 
+
+<apex:page standardController="Event__c" recordSetVar="events" extensions="EventPaginationExtension">
+    
+    <apex:form >
+        <apex:pageBlock title="Events">
+            
+            <!-- Buttons for showing more records and accessing the Create Event Wizard -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!setController.previous}" value="Previous" disabled="{!NOT(setController.hasPrevious)}"/>
+                <apex:commandButton action="{!setController.next}" value="Next" disabled="{!NOT(setController.hasNext)}"/>
+                <apex:commandButton action="{!createEventWizard}" value="Create Event" />
+            </apex:pageBlockButtons>
+            
+            <!-- Table for showing records -->
+            <apex:pageBlockTable value="{!displayedEvents}" var="evt" >
+                <apex:column headerValue="Event Name" >
+                    
+                    <!-- outputLink used as hyperlink to redirect users to the record detail page -->
+                    <apex:outputLink value="/{!evt.id}" target="_blank" >
+                        {!evt.Name}
+                    </apex:outputLink>
+                    
+                </apex:column>
+                <apex:column headerValue="Event Type" value="{!evt.RecordTypeId}"/>
+                <apex:column headerValue="Start Date/Time" value="{!evt.StartDate__c}"/>
+                <apex:column headerValue="End Date/Time" value="{!evt.EndDate__c}"/>
+                <apex:column headerValue="Location" value="{!evt.Street__c} {!evt.City__c}, {!evt.StateProvince__c} {!evt.ZipPostalCode__c}"/>
+                <apex:column headerValue="Attendees" value="{!evt.Attendees__c}"/>
+                <apex:column headerValue="Cost" value="{!evt.Cost__c}" />
+            </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

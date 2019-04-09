@@ -1,0 +1,39 @@
+<!-- CreateRTaskPageSave -->
+<!-- Lets the user view their Task information before saving -->
+<apex:page controller="TaskWizardController" docType="html-5.0">
+    <apex:form >
+        <apex:pageBlock title="New Task Wizard: Task Information">
+            
+            <!-- Buttons for moving through the wizard -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!PageSavePrevious}" value="Previous"/>
+                <apex:commandButton action="{!saveTask}" value="Save"/>
+            </apex:pageBlockButtons>
+            
+            <!-- Output form variables -->
+            <!-- Task Information -->
+            <apex:pageBlockSection title="Task Information" >
+                <apex:outputText value="Assigned To"/>
+                <apex:outputText value="{!assignedTo}"/>
+                <apex:outputText value="Status" />
+                <apex:outputText value="{!status}"/>
+                <apex:outputText value="Subject" />
+                <apex:outputText value="{!subject}"/>
+                <apex:outputText value="Contact Name"/>
+                <apex:outputText value="{!contactName}"/>
+                <apex:outputText value="Due Date"/>
+                <apex:outputText value="{!dueDate}"/>
+                <apex:outputText value="Account Related To" />
+                <apex:outputText value="{!accountRelatedTo}"/>
+                <apex:outputText value="Priority" />
+                <apex:outputText value="{!priority}"/>
+            </apex:pageBlockSection>
+            
+            <!-- Description Information -->
+            <apex:pageBlockSection title="Description Information" >
+            <apex:outputText value="Comments" />
+                <apex:outputText value="{!comments}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

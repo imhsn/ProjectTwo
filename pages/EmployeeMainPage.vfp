@@ -1,0 +1,36 @@
+<!-- EmployeeMainPage -->
+<!-- Shows a list of all employee records --> 
+
+<apex:page standardController="Employee__c" recordSetVar="employees" extensions="EmployeePaginationExtension">
+    
+    <apex:form >
+        <apex:pageBlock title="Employees">
+            
+            <!-- Buttons for showing more records and accessing the Create Employee Wizard -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!setController.previous}" value="Previous" disabled="{!NOT(setController.hasPrevious)}"/>
+                <apex:commandButton action="{!setController.next}" value="Next" disabled="{!NOT(setController.hasNext)}"/>
+                <apex:commandButton action="{!createEmployeeWizard}" value="Create Employee" />
+            </apex:pageBlockButtons>
+            
+            <!-- Table for showing records -->
+            <apex:pageBlockTable value="{!displayedEmployees}" var="emp" >
+                <apex:column headerValue="Employee Name" >
+                    
+                    <!-- outputLink used as hyperlink to redirect users to the record detail page -->
+                    <apex:outputLink value="/{!emp.id}" target="_blank" >
+                        {!emp.Name}
+                    </apex:outputLink>
+                    
+                </apex:column>
+                <apex:column headerValue="Experience (Years)" value="{!emp.ExperienceYears__c}"/>
+                <apex:column headerValue="Phone Number" value="{!emp.PhoneNumber__c}"/>
+                <apex:column headerValue="Email" value="{!emp.Email__c}"/>
+                <apex:column headerValue="Address" value="{!emp.Street__c} {!emp.City__c}, {!emp.StateProvince__c} {!emp.ZipPostalCode__c}"/>
+            </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>
