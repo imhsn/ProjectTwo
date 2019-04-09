@@ -1,28 +1,44 @@
 <!-- CreateTaskPage -->
 <!-- Create a new task record --> 
 
-<apex:page standardController="Task" extensions="CreateTaskPageExtension" docType="html-5.0">
-    <apex:form >
-        <apex:pageBlock title="New Task">
-            <!-- Buttons to Save or Cancel saving a new Task -->
-            <apex:pageBlockButtons >
-                <apex:commandButton action="{!Save}" value="Save" />
-                <apex:commandButton action="{!Cancel}" value="Cancel" />
-            </apex:pageBlockButtons>
-            
-            <!-- Input for variable(s) -->
-            <apex:pageBlockSection title="Task Information">
-                <apex:inputField value="{!Task.OwnerId}" />
-                <apex:inputField value="{!Task.Status}" />
-                <apex:inputField value="{!Task.Subject}" />
-                <apex:inputField value="{!Task.WhoId}" />
-                <apex:inputField value="{!Task.ActivityDate}" />
-                <apex:inputField value="{!Task.WhatId}" />
-                <apex:inputField value="{!Task.Priority}" />
-            </apex:pageBlockSection>
-            <apex:pageBlockSection title="Description Information">
-            	<apex:inputField value="{!Task.Description}" />
-            </apex:pageBlockSection>
-        </apex:pageBlock>
-    </apex:form>
+<apex:page standardController="Task" extensions="CreateTaskPageExtension" docType="html-5.0" lightningStylesheets="true">
+    
+    <style>
+        body {
+            padding: 10px;
+            background-image: linear-gradient(#00bfff, #7cfc00);
+            height: 1000px;
+        }
+        .pageBlockButton {
+            float: right;
+            padding: 15px;
+        }
+    </style>
+    
+    <body>
+    
+        <apex:form >
+            <apex:pageBlock title="New Task">
+                <!-- Buttons to Save or Cancel saving a new Task -->
+                <apex:pageBlockButtons styleClass="pageBlockButton" >
+                    <apex:commandButton action="{!Save}" value="Save" />
+                    <apex:commandButton action="{!Cancel}" value="Cancel" />
+                </apex:pageBlockButtons>
+                
+                <!-- Input for variable(s) -->
+                <apex:pageBlockSection title="Task Information">
+                    <apex:inputField value="{!Task.OwnerId}" />
+                    <apex:inputField value="{!Task.Status}" />
+                    <apex:inputField value="{!Task.Subject}" />
+                    <apex:inputField value="{!Task.WhoId}" />
+                    <apex:inputField value="{!Task.ActivityDate}" />
+                    <apex:inputField value="{!Task.WhatId}" />
+                    <apex:inputField value="{!Task.Priority}" />
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Description Information">
+                    <apex:inputField value="{!Task.Description}" />
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+    </body>
 </apex:page>
