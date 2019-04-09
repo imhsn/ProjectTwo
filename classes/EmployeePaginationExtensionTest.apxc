@@ -1,0 +1,58 @@
+@isTest
+public class EmployeePaginationExtensionTest {
+    @isTest
+    public static void testRedirectEmployeePage(){
+    PageReference expectRef = Page.CreateEmployeePage;
+        
+        PageReference goToRef = EmployeePaginationExtension.createEmployeeWizard();
+        
+        System.assertEquals(expectRef.getUrl(), goToRef.getUrl());
+}
+    @isTest
+    public static void testRedirectToMainEventPage(){
+    PageReference expectRef = Page.EmployeeMainPage;
+        
+        PageReference goToRef = EmployeePaginationExtension.cancel();
+        
+        System.assertEquals(expectRef.getUrl(), goToRef.getUrl());
+}
+    // Test the EventPaginationExtension constructor
+    @isTest
+    public static void testEmployeePaginationExtension() {
+        
+        //Create a new instance of Account
+        Employee__c emp = new Employee__c(PhoneNumber__c='(323) 343-8475');
+
+        //Insert the object
+        insert emp;
+        
+        //Create a new instance of standard controller
+        ApexPages.StandardController sc = new ApexPages.standardController(emp);
+
+        EmployeePaginationExtension controller = new EmployeePaginationExtension(sc);
+        
+        
+    }
+    
+    // Test the EventPaginationExtension constructor
+    @isTest
+    public static void testEmployeePaginationExtensionList() {
+        List<Employee__c> empList = new List<Employee__c>();
+        for(Integer i = 0; i < 1; i++) {
+        //Create a new instance of Account
+        Employee__c emp = new Employee__c(PhoneNumber__c='(323) 343-8475');
+        empList.add(emp);
+        }
+        //Insert the object
+        insert empList;
+        
+        //Create a new instance of standard controller
+        ApexPages.StandardSetController sc = new ApexPages.standardSetController(empList);
+
+        EmployeePaginationExtension controller = new EmployeePaginationExtension(sc);
+        
+        // Test displayedEvents
+        System.assertEquals(empList[0].Id, controller.displayedEmployees[0].Id);
+
+    }
+}
