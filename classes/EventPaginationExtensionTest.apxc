@@ -16,8 +16,8 @@ public class EventPaginationExtensionTest {
         for(Integer i = 0; i < 5; i++) {
             
             Event__c e = new Event__c (Name = 'Test' + i,
-                                       StartDate__c = Date.newInstance(2016, 12, 9),
-                                       EndDate__c = Date.newInstance(2017, 12, 9),
+                                       StartDate__c = Date.newInstance(2999, 12, 9),
+                                       EndDate__c = Date.newInstance(3000, 12, 9),
                                        Street__c = '123 Test St',
                                        City__c = 'TestBrugh',
                                        StateProvince__c = 'New York',
