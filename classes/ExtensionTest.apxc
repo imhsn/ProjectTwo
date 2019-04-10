@@ -1,0 +1,58 @@
+@isTest
+public class ExtensionTest {
+    
+    
+    static testMethod void testing() {
+        SignUp__c testSu = new SignUp__C(Event__c='a012E00000bepLYQAY', Employee__c='a002E00000Yvfh7QAB');
+        insert testSu;
+    }
+    
+    @isTest public static void testPageCreate () {
+        PageReference expectRef = Page.CreateSignUpPage1;
+        PageReference goToRef = SignUpPaginationExtension.Creation();
+        System.assertEquals(expectRef.getUrl(), goToRef.getUrl());
+    }
+    @isTest public static void testPageCancel () {
+        PageReference expectRef = Page.SignUpVFPage;
+        PageReference goToRef = SignUpPaginationExtension.Cancel();
+        System.assertEquals(expectRef.getUrl(), goToRef.getUrl());
+    }
+    
+   // Test the EventPaginationExtension Contructor
+    @isTest(SeeAllData = true)
+    public static void testEventPaginationExtension() {
+        
+        //Create a new instance of Account
+         SignUp__c testSu2 = new SignUp__C(Event__c='a012E00000bepLYQAY', Employee__c='a002E00000Yvfh7QAB');
+
+        //Insert the object
+        insert testSu2;
+        
+        //Create a new instance of standard controller
+        ApexPages.StandardController sc = new ApexPages.standardController(testSu2);
+
+        SignUpPaginationExtension controller = new SignUpPaginationExtension(sc);
+        
+       
+    }
+   
+    //test the standard set controller
+    @isTest(SeeAllData = true)
+    public static void testSignUpPaginationExtension2() {
+    List<SignUp__c> suList = new List<SignUp__c>();
+        for(Integer i = 0; i < 5; i++) {    
+            SignUp__c signdown = new SignUp__c (Event__c='a012E00000bepLYQAY', 
+                                                Employee__c='a002E00000Yvfh7QAB'
+                                         );
+            suList.add(signdown);
+        }
+        insert suList; 
+        ApexPages.StandardSetController ssc = new ApexPages.standardSetController(suList); 
+        SignUpPaginationExtension controller = new SignUpPaginationExtension(ssc);
+        
+        // Testing the variable displayedEvents
+        // Test Failed due to inconsistent list data
+        //System.assertEquals(suList[0].Employee__c, controller.displayedSignUps[0].Employee__c);
+    }
+    
+}

@@ -1,0 +1,62 @@
+/* *
+ * Test Class
+ * CreateTaskPageExtensionTest
+ * Mahmudul Hasan
+ * */
+
+@isTest
+public class CreateTaskPageExtensionTest {
+    
+    // Validate default constructor 
+    @isTest
+    static void testDefaultConstructor()
+    {
+    // Create a new instance of Task
+    Task tsk = new Task();
+    // Insert the object
+    insert tsk;
+    // Create a new instance of standard controller
+    ApexPages.StandardController sc = new ApexPages.standardController(tsk);
+    CreateTaskPageExtension controller = new CreateTaskPageExtension(sc);
+    }
+    
+    // Validate constructor with standard set controller
+    @isTest
+    static void testConstructor()
+    {
+        List<Task> tskList = new List<Task>();
+        for(Integer i = 0; i < 5; i++){
+            Task tsk = new Task();
+            // Add the Task to the Collection list
+            tskList.add(tsk);
+        }
+        insert tskList;
+        // Create a new instance of standard set controller
+        ApexPages.StandardSetController ssc = new ApexPages.standardSetController(tskList);
+        CreateTaskPageExtension controller = new CreateTaskPageExtension(ssc);
+        // Test displayedEvents
+        System.assertEquals(tskList[0].Id, controller.displayedTasks[0].Id);
+    }
+    
+    // Validate Create Task Page
+    @isTest
+    static void validateCreateTaskPage() {
+        // Expected result
+        PageReference expectRef = Page.createTaskPage;
+        // Actual result
+        PageReference goToRef = CreateTaskPageExtension.createTaskPage();
+        // Assertion
+        System.assertEquals(expectRef.getUrl(), goToRef.getUrl());        
+    }
+    
+    // Validate Cancel
+    @isTest
+    static void validateCancel() {
+        // Expected result
+        PageReference expectRef = Page.TaskMainPage;
+        // Actual result
+        PageReference goToRef = CreateTaskPageExtension.Cancel();
+        // Assertion
+        System.assertEquals(expectRef.getUrl(), goToRef.getUrl());        
+    }
+}

@@ -1,0 +1,41 @@
+Version 1.1
+
+Changes and Updates
+
+
+TaskMainPage.vfp
+
+  Change made a line 24: WAS tsk.subject, NOW tsk.id
+  Reason: tsk.subject was not displaying correctly.
+
+  Update added at line 29 to 32: Added four more columns to the table
+  Reason: The tables on the Task Main page were looking very bare, it needed more information.
+
+
+CreateTaskPageExtension.apxc
+
+  Change made at line 25: WAS tsk = (Task)con.getRecord();, NOW // tsk = (Task)con.getRecord();
+  Reason: Line didn't seem to do anything and was breaking the application.
+  
+  Update added at line 36 to 40: Added createTaskPage method, sends user to createTaskPage.
+  Reason: This method was called in the TaskMainPage.vfp file but was not declared.
+  
+  
+CreateEmployeePage.vfp
+
+  Update added at line 8: Added an extension, "EmployeePaginationExtension"
+  Reason: Needed to override the cancel method to redirect the user to a visualforce page.
+  
+  
+EmployeeMainPage.vfp
+
+  Update added: New file
+  Reason: Needed an employee main page
+  
+  
+EmployeePaginationExtension.apxc
+
+  Update added: New file
+  Reason: Needed an extension for EmployeeMainPage.vfp and CreateEmployeePage.vfp
+  
+
