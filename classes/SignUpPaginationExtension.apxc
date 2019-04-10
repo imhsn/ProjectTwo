@@ -1,0 +1,41 @@
+public class SignUpPaginationExtension {
+    
+    //Variable to be used for saving
+    SignUp__c su = new SignUp__c();
+    
+	public ApexPages.StandardSetController setController {get;set;}
+    
+    public List<SignUp__c> displayedSignUps {
+        get {
+            return setController.getRecords();
+        	} set;
+    }
+    
+   //Pagination Setup
+    public SignUpPaginationExtension(ApexPages.StandardSetController ctrl) {
+        setController = new ApexPages.StandardSetController([SELECT Name,
+                                                             Event__c,
+                                                             Employee__c
+                                                             FROM SignUP__c]);
+        setController.setPageSize(5);
+    }
+   
+    public SignUpPaginationExtension(ApexPages.StandardController con) {
+        su = (SignUp__c)con.getRecord();
+    }
+    
+    //Page Redirects
+    public PageReference Save() {
+        insert su;
+        return Page.SignUpVFPage;
+    }
+    
+    public PageReference Cancel() {
+        return Page.SignUpVFPage;
+    }
+    
+    public PageReference Creation() {
+        return Page.CreateSignUpPage1;
+    }
+   
+}
