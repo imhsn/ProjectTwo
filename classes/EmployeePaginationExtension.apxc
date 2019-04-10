@@ -1,0 +1,43 @@
+public class EmployeePaginationExtension {
+	
+    // Variables
+    public ApexPages.StandardSetController setController {get;set;}
+    
+    // Returns Event__c records
+    public List<Employee__c> displayedEmployees {
+        get {
+            return setController.getRecords();
+        }// end get
+        set;
+    }// end displayedEvents
+    
+    // Gets Event__c records
+    public EmployeePaginationExtension(ApexPages.StandardSetController ctrl) {
+        setController = new ApexPages.StandardSetController([SELECT Id, Name, 
+                                                             PhoneNumber__c,
+                                                             Street__c,
+                                                             StateProvince__c,
+                                                             ZipPostalCode__c,
+                                                             City__c,
+                                                             ExperienceYears__c,
+                                                             Email__c
+                                                          FROM Employee__c]);
+        
+        setController.setPageSize(5);
+    }// end EventPaginationExtension Constructor
+    
+    public EmployeePaginationExtension(ApexPages.StandardController ctrl) {
+        
+    }
+ 
+    // Method for redirecting users to the Create Event Wizard
+    public PageReference createEmployeeWizard() {
+        return Page.CreateEmployeePage;
+    }// end createEventWizard
+    
+    // Method for redirecting users to the Main Event Page
+    public PageReference cancel() {
+        return Page.EmployeeMainPage;
+    }// end createEventWizard
+    
+}// end EventPaginationExtension
