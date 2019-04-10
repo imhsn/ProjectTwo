@@ -34,7 +34,7 @@ public class CreateTaskPageExtensionTest {
         // Create a new instance of standard set controller
         ApexPages.StandardSetController ssc = new ApexPages.standardSetController(tskList);
         CreateTaskPageExtension controller = new CreateTaskPageExtension(ssc);
-        // Test displayedEvents
+        // Test displayedTasks
         System.assertEquals(tskList[0].Id, controller.displayedTasks[0].Id);
     }
     
