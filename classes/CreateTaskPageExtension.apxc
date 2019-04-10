@@ -19,6 +19,7 @@ public class CreateTaskPageExtension {
     }
    
     public CreateTaskPageExtension(ApexPages.StandardController con) {
+
         // Edit by Gabriel Nypaver
         // Date 4/8/2019
         // Reason: Not needed/Breaking the application
@@ -26,16 +27,16 @@ public class CreateTaskPageExtension {
     }
     
     // Method for redirecting users to the Task Main Page
-    public PageReference Cancel() {
+    public static PageReference Cancel() {
         return Page.TaskMainPage;
     }
     
     // Edit by Gabriel Nypaver
     // Date 4/8/2019
     // Reason: No method for createTaskPage, creating one
-    public PageReference createTaskPage() {
-	
-        return Page.createTaskPage;
+    public static PageReference createTaskPage() {
     
+        return Page.createTaskPage;
+     
     }
 }
