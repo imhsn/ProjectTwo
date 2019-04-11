@@ -3,7 +3,7 @@ public class ExtensionTest {
     
     
     static testMethod void testing() {
-        SignUp__c testSu = new SignUp__C(Event__c='a012E00000bepLYQAY', Employee__c='a002E00000Yvfh7QAB');
+        SignUp__c testSu = new SignUp__C(Event__c='a012E00000d4u1QQAQ', Employee__c='a002E00000YnB7UQAV');
         insert testSu;
     }
     
@@ -23,7 +23,7 @@ public class ExtensionTest {
     public static void testEventPaginationExtension() {
         
         //Create a new instance of Account
-         SignUp__c testSu2 = new SignUp__C(Event__c='a012E00000bepLYQAY', Employee__c='a002E00000Yvfh7QAB');
+         SignUp__c testSu2 = new SignUp__C(Event__c='a012E00000d4u1QQAQ', Employee__c='a002E00000YnB7UQAV');
 
         //Insert the object
         insert testSu2;
@@ -41,8 +41,8 @@ public class ExtensionTest {
     public static void testSignUpPaginationExtension2() {
     List<SignUp__c> suList = new List<SignUp__c>();
         for(Integer i = 0; i < 5; i++) {    
-            SignUp__c signdown = new SignUp__c (Event__c='a012E00000bepLYQAY', 
-                                                Employee__c='a002E00000Yvfh7QAB'
+            SignUp__c signdown = new SignUp__c (Event__c='a012E00000d4rNvQAI', 
+                                                Employee__c='a002E00000YnB7UQAV'
                                          );
             suList.add(signdown);
         }
@@ -50,9 +50,8 @@ public class ExtensionTest {
         ApexPages.StandardSetController ssc = new ApexPages.standardSetController(suList); 
         SignUpPaginationExtension controller = new SignUpPaginationExtension(ssc);
         
-        // Testing the variable displayedEvents
-        // Test Failed due to inconsistent list data
-        //System.assertEquals(suList[0].Employee__c, controller.displayedSignUps[0].Employee__c);
+        // Testing the variable displayedSignUps
+        System.assertEquals(suList[0].Event__c, Controller.displayedSignUps[0].Event__c);
     }
     
 }
