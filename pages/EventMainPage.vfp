@@ -3,17 +3,7 @@
 
 <apex:page standardController="Event__c" recordSetVar="events" extensions="EventPaginationExtension" lightningStylesheets="true">
     
-    <style>
-        body {
-            padding: 10px;
-            background-image: linear-gradient(#00bfff, #7cfc00);
-            height: 1000px;
-        }
-        .pageBlockButton {
-            float: right;
-            padding: 15px;
-        }
-    </style>
+    <apex:stylesheet value="{!$Resource.CSS}"/>
     
     <body> 
         
